@@ -15,4 +15,33 @@
 
 class CRM_Campaignaddon_DataHandler {
 
+  private $dataProviders = [];
+
+  function __construct() {
+    $providerList = [
+      new CRM_Campaignaddon_Data_SupporterCount()
+    ];
+
+    //Fill provider list as map with provider name => provider instance:
+    foreach ($providerList as $provider) {
+      if (!$this->hasProvider($provider->getName())) {
+        $this->dataProviders[$provider->getName()] = $provider;
+      }
+    }
+  }
+
+  public function hasProvider($providerName) {
+    return isset($this->dataProviders[$providerName]);
+  }
+
+  public function getData($providerName) {
+    if ($this->hasProvider($providerName)) {
+      return $this->dataProviders[$providerName]->getData();
+      //TODO: Cache the result.
+    }
+    else {
+      return NULL;
+    }
+  }
+
 }
