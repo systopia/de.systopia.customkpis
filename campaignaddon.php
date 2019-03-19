@@ -3,6 +3,18 @@
 require_once 'campaignaddon.civix.php';
 use CRM_Campaignaddon_ExtensionUtil as E;
 
+
+/**
+ * Implements additional custom KPIs for the Campaign extension.
+ * @param $campaignId
+ * @param $kpiList
+ * @param $level
+ */
+function campaignaddon_civicrm_campaignKpis($campaignId, &$kpiList, $level) {
+  CRM_Campaignaddon_CampaignAddon::getSingleton()->startKpis($campaignId, $kpiList, $level);
+}
+
+
 /**
  * Implements hook_civicrm_config().
  *

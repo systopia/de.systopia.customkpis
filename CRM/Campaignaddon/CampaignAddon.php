@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | SYSTOPIA OnlyOffice Integration                        |
-| Copyright (C) 2018 SYSTOPIA                            |
+| Copyright (C) 2019 SYSTOPIA                            |
 | Author: B. Zschiedrich (zschiedrich@systopia.de)       |
 +--------------------------------------------------------+
 | This program is released as free software under the    |
@@ -37,5 +37,15 @@ class CRM_Campaignaddon_CampaignAddon {
    */
   function __construct() {
     $settings = CRM_Campaignaddon_Configuration::getSettings();
+  }
+
+  /**
+   * Runs the KPIs for this addon.
+   * @param $campaignId
+   * @param $kpiList
+   * @param $level
+   */
+  function startKpis($campaignId, &$kpiList, $level) {
+
   }
 }
