@@ -13,12 +13,34 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
+require_once('CRM/CampaignTree/Tree.php');
+
 class CRM_Campaignaddon_KpiHandler {
 
+  private $kpiProviders;
   private $dataHandler;
+
+  function __construct() {
+    $this->kpiProviders = [
+      new CRM_Campaignaddon_KPI_SupporterCount()
+    ];
+
+  }
 
   public function setDataHandler($dataHandler) {
     $this->dataHandler = $dataHandler;
+  }
+
+  public function calculateKpis($campaignId, &$kpiList, $level) {
+    // get all sub-campaigns
+    $campaigns = CRM_Campaign_Tree::getCampaignIds($campaignId, $level);
+    $children = $campaigns['children'];
+
+    foreach ($this->kpiProviders as $provider) {
+      $name = $provider->getName();
+      $kpi = $provider->calculateKpi($this->dataHandler, $campaignId, $children);
+      $kpiList[$name] = $kpi;
+    }
   }
 
 }

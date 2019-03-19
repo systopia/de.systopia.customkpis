@@ -55,6 +55,6 @@ class CRM_Campaignaddon_CampaignAddon {
    * @param $level
    */
   function startKpis($campaignId, &$kpiList, $level) {
-
+    $this->kpiHandler->calculateKpis($campaignId, $kpiList, $level);
   }
 }
