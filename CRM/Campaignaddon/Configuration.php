@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | SYSTOPIA OnlyOffice Integration                        |
-| Copyright (C) 2018 SYSTOPIA                            |
+| Copyright (C) 2019 SYSTOPIA                            |
 | Author: B. Zschiedrich (zschiedrich@systopia.de)       |
 +--------------------------------------------------------+
 | This program is released as free software under the    |
@@ -25,6 +25,8 @@ class CRM_Campaignaddon_Configuration {
   const GROUP = 'de.volksverein.campaignaddon';
   const PREFIX = 'campaignaddon';
   const SETTINGS = self::PREFIX . '_settings';
+
+  public const DOMAIN = ['domain' => self::GROUP];
 
   /**
    * @param $name string settigs name
