@@ -22,6 +22,10 @@ class CRM_Campaignaddon_CampaignAddon {
 
   private static $singleton = NULL;
 
+  private $settings = NULL;
+  private $dataHandler;
+  private $kpiHandler;
+
   /**
   * Get the CampaignAddon controller singleton
   */
@@ -36,7 +40,12 @@ class CRM_Campaignaddon_CampaignAddon {
    * CRM_Campaignaddon_CampaignAddon constructor.
    */
   function __construct() {
-    $settings = CRM_Campaignaddon_Configuration::getSettings();
+    $this->settings = CRM_Campaignaddon_Configuration::getSettings();
+
+    $this->dataHandler = new CRM_Campaignaddon_DataHandler();
+
+    $this->kpiHandler = new CRM_Campaignaddon_KpiHandler();
+    $this->kpiHandler->setDataHandler($this->dataHandler);
   }
 
   /**
