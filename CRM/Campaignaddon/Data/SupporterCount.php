@@ -18,8 +18,23 @@ class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseC
   protected $name = 'SupporterCount';
 
   public function getData() {
-    return '8';
-    //TODO: Implement.
+    $allIdsList = implode(',', $this->allCampaignIds);
+
+    $query = "
+      SELECT COUNT(DISTINCT contact.contact_id) AS contact_count
+      FROM `civicrm_activity` AS activity
+      LEFT JOIN `civicrm_activity_contact` AS contact
+        ON activity.id = contact.activity_id
+          AND contact.record_type_id = 3
+      WHERE activity.campaign_id IN ({$allIdsList});
+    ";
+
+      $result = CRM_Core_DAO::singleValueQuery($query);
+      if ($result) {
+         return $result;
+      } else {
+         return '0';
+      }
   }
 
 }
