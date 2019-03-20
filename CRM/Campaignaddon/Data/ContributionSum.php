@@ -13,20 +13,17 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Campaignaddon_Data_ContributionSum extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $name = 'SupporterCount';
+  protected $name = 'ContributionSum';
 
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
     $query = "
-      SELECT COUNT(DISTINCT contact.contact_id) AS contact_count
-      FROM `civicrm_activity` AS activity
-      LEFT JOIN `civicrm_activity_contact` AS contact
-        ON activity.id = contact.activity_id
-          AND contact.record_type_id = 3
-      WHERE activity.campaign_id IN ({$allIdsList});
+      SELECT SUM(`total_amount`)
+      FROM `civicrm_contribution`
+      WHERE `campaign_id` IN ({$allIdsList});
     ";
 
       $result = CRM_Core_DAO::singleValueQuery($query);
