@@ -22,7 +22,8 @@ class CRM_Campaignaddon_KpiHandler {
 
   function __construct() {
     $this->kpiProviders = [
-      new CRM_Campaignaddon_KPI_SupporterCount()
+      new CRM_Campaignaddon_KPI_SupporterCount(),
+      new CRM_Campaignaddon_KPI_AverageSupporterContribution()
     ];
 
   }

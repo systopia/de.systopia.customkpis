@@ -13,19 +13,22 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_SupporterCount extends CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Campaignaddon_KPI_AverageSupporterContribution extends CRM_Campaignaddon_KPI_BaseClass {
 
-  protected $name = 'SupporterCount';
+  protected $name = 'AverageSupporterContribution';
 
   public function calculateKpi($dataHandler) {
-    $data = $dataHandler->getData('SupporterCount');
+    $contributionSum = $dataHandler->getData('ContributionSum');
+    $supporterCount = $dataHandler->getData('SupporterCount');
+
+    $data = $contributionSum / $supporterCount;
 
     $kpi = [
       "id"          => $this->name,
-      "title"       => ts('Number of supporters', CRM_Campaignaddon_Configuration::DOMAIN),
-      "kpi_type"    => "number",
+      "title"       => ts('Average contribution per supporter', CRM_Campaignaddon_Configuration::DOMAIN),
+      "kpi_type"    => "money",
       "vis_type"    => "none",
-      "description" => ts("Number of supporters associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
+      "description" => ts("Average donation amount per supporter for this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
       "value"       => $data,
       "link"        => ""
     ];
