@@ -36,9 +36,11 @@ class CRM_Campaignaddon_KpiHandler {
     $campaigns = CRM_Campaign_Tree::getCampaignIds($campaignId, $level);
     $children = $campaigns['children'];
 
+    $this->dataHandler->setCampaign($campaignId, $children);
+
     foreach ($this->kpiProviders as $provider) {
       $name = $provider->getName();
-      $kpi = $provider->calculateKpi($this->dataHandler, $campaignId, $children);
+      $kpi = $provider->calculateKpi($this->dataHandler);
       $kpiList[$name] = $kpi;
     }
   }

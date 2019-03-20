@@ -17,8 +17,20 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
 
   protected $name = 'BaseClass';
 
+  protected $campaignId;
+  protected $campaignChildren;
+  protected $allCampaignIds;
+
   public function getName() {
     return $this->name;
+  }
+
+  public function setCampaign($campaignId, $campaignChildren) {
+    $this->campaignId = $campaignId;
+    $this->campaignChildren = $campaignChildren;
+
+    $this->allCampaignIds = array_keys($campaignChildren);
+    $this->allCampaignIds[] = $campaignId;
   }
 
   abstract public function getData();

@@ -17,7 +17,7 @@ class CRM_Campaignaddon_KPI_SupporterCount extends CRM_Campaignaddon_KPI_BaseCla
 
   protected $name = 'SupporterCount';
 
-  public function calculateKpi($dataHandler, $campaignId, $children) {
+  public function calculateKpi($dataHandler) {
 
     $data = $dataHandler->getData('SupporterCount');
 

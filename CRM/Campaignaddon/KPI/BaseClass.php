@@ -21,6 +21,6 @@ abstract class CRM_Campaignaddon_KPI_BaseClass {
     return $this->name;
   }
 
-  abstract public function calculateKpi($dataHandler, $campaignId, $children);
+  abstract public function calculateKpi($dataHandler);
 
 }

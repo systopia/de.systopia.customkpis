@@ -34,6 +34,13 @@ class CRM_Campaignaddon_DataHandler {
     return isset($this->dataProviders[$providerName]);
   }
 
+  public function setCampaign($campaignId, $campaignChildren) {
+    foreach ($this->dataProviders as $provider) {
+      $provider->setCampaign($campaignId, $campaignChildren);
+    }
+    //TODO: Flush cash.
+  }
+
   public function getData($providerName) {
     if ($this->hasProvider($providerName)) {
       return $this->dataProviders[$providerName]->getData();
