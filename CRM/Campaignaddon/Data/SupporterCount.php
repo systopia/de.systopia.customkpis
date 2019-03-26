@@ -21,13 +21,21 @@ class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseC
     $allIdsList = implode(',', $this->allCampaignIds);
 
     $query = "
-      SELECT COUNT(DISTINCT contact.contact_id) AS contact_count
-      FROM `civicrm_activity` AS activity
-      LEFT JOIN `civicrm_activity_contact` AS contact
-        ON activity.id = contact.activity_id
-          AND contact.record_type_id = 3
-      WHERE activity.campaign_id IN ({$allIdsList});
+      SELECT COUNT(supporters.contact_id) FROM
+      (
+          SELECT DISTINCT contact.contact_id AS contact_id
+          FROM `civicrm_activity` AS activity
+          LEFT JOIN `civicrm_activity_contact` AS contact
+            ON activity.id = contact.activity_id
+              AND contact.record_type_id = 3
+          WHERE activity.campaign_id IN ({$allIdsList})
+        UNION DISTINCT
+          SELECT DISTINCT `contact_id`
+          FROM `civicrm_contribution`
+          WHERE `campaign_id` IN ({$allIdsList})
+      ) AS supporters
     ";
+    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
 
       $result = CRM_Core_DAO::singleValueQuery($query);
 
