@@ -13,19 +13,19 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_SupporterCount extends CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Campaignaddon_KPI_AddresseeCount extends CRM_Campaignaddon_KPI_BaseClass {
 
-  protected $name = 'SupporterCount';
+  protected $name = 'AddresseeCount';
 
   public function calculateKpi($dataHandler) {
-    $data = $dataHandler->getData('SupporterCount');
+    $data = $dataHandler->getData('AddresseeCount');
 
     $kpi = [
       "id"          => $this->name,
-      "title"       => ts('Number of supporters', CRM_Campaignaddon_Configuration::DOMAIN),
+      "title"       => ts('Number of addressees', CRM_Campaignaddon_Configuration::DOMAIN),
       "kpi_type"    => "number",
       "vis_type"    => "none",
-      "description" => ts("Number of supporters (contacts who are targets of an activity or who contributed) associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
+      "description" => ts("Number of addressees (contacts who are targets of an activity defined in versand activity list) associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
       "value"       => $data,
       "link"        => ""
     ];

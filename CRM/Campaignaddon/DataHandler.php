@@ -20,7 +20,8 @@ class CRM_Campaignaddon_DataHandler {
   function __construct() {
     $providerList = [
       new CRM_Campaignaddon_Data_SupporterCount(),
-      new CRM_Campaignaddon_Data_ContributionSum()
+      new CRM_Campaignaddon_Data_ContributionSum(),
+      new CRM_Campaignaddon_Data_AddresseeCount()
     ];
 
     //Fill provider list as map with provider name => provider instance:

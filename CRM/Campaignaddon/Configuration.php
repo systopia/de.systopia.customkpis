@@ -46,7 +46,7 @@ class CRM_Campaignaddon_Configuration {
     if ($settings && is_array($settings)) {
       return $settings;
     } else {
-      return [];
+      return ['versand_activity_types' => [1,2,3,4,5,6,7,8,9]];
     }
   }
 
