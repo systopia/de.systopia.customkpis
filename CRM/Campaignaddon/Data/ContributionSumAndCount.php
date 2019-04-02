@@ -13,15 +13,16 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_ContributionSum extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Campaignaddon_Data_ContributionSumAndCount extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $providerNames = ['ContributionSum'];
+  protected $providerNames = ['ContributionSum', 'ContributionCount'];
 
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
     $query = "
-      SELECT SUM(`total_amount`) AS ContributionSum
+      SELECT SUM(`total_amount`) AS ContributionSum,
+             COUNT(`id`) AS ContributionCount
       FROM `civicrm_contribution`
       WHERE `campaign_id` IN ({$allIdsList});
     ";

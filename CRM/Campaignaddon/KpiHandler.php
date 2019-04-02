@@ -25,9 +25,9 @@ class CRM_Campaignaddon_KpiHandler {
       //new CRM_Campaignaddon_KPI_AddresseeCount(),
       new CRM_Campaignaddon_KPI_VersandCount(),
       new CRM_Campaignaddon_KPI_SupporterCount(),
-      new CRM_Campaignaddon_KPI_AverageSupporterContribution()
+      new CRM_Campaignaddon_KPI_AverageSupporterContribution(),
+      new CRM_Campaignaddon_KPI_Response,
     ];
-
   }
 
   public function setDataHandler($dataHandler) {
