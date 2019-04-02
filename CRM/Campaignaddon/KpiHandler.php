@@ -35,7 +35,7 @@ class CRM_Campaignaddon_KpiHandler {
   }
 
   public function calculateKpis($campaignId, &$kpiList, $level) {
-    // get all sub-campaigns
+    //Get all sub-campaigns:
     $campaigns = CRM_Campaign_Tree::getCampaignIds($campaignId, $level);
     $children = $campaigns['children'];
 
@@ -46,6 +46,8 @@ class CRM_Campaignaddon_KpiHandler {
       $kpi = $provider->calculateKpi($this->dataHandler);
       $kpiList[$name] = $kpi;
     }
+
+    //KPIs are automatically cached by the Campaign Manager extension.
   }
 
 }

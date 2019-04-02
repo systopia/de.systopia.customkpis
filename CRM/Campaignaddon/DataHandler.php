@@ -16,6 +16,7 @@
 class CRM_Campaignaddon_DataHandler {
 
   private $dataProviders = [];
+  private $dataCache = [];
 
   function __construct() {
     $providerList = [
@@ -42,13 +43,25 @@ class CRM_Campaignaddon_DataHandler {
     foreach ($this->dataProviders as $provider) {
       $provider->setCampaign($campaignId, $campaignChildren);
     }
-    //TODO: Flush cash.
+
+    //Flush cache:
+    $this->dataCache = [];
   }
 
   public function getData($providerName) {
     if ($this->hasProvider($providerName) && ($providerName != CRM_Campaignaddon_Data_BaseClass::PROVIDER_NOT_SET)) {
-      return $this->dataProviders[$providerName]->getData()[$providerName];
-      //TODO: Cache the result.
+      //If value is cached, return the cached value:
+      if (isset($this->dataCache[$providerName])) {
+        return $this->dataCache[$providerName];
+      }
+      else {
+        //If not cached, look up and cache all returned values:
+        $data = $this->dataProviders[$providerName]->getData();
+        foreach ($data as $key => $value) {
+          $this->dataCache[$key] = $value;
+        }
+        return $data[$providerName];
+      }
     }
     else {
       return NULL;
