@@ -15,7 +15,9 @@
 
 abstract class CRM_Campaignaddon_Data_BaseClass {
 
-  protected $name = 'BaseClass';
+  public const PROVIDER_NOT_SET = 'NoProviderSet';
+
+  protected $providerNames = [self::PROVIDER_NOT_SET];
 
   protected $campaignId;
   protected $campaignChildren;
@@ -23,8 +25,25 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
 
   abstract public function getData();
 
-  public function getName() {
-    return $this->name;
+  protected function getProviderResults($query) {
+    $queryResult = CRM_Core_DAO::executeQuery($query);
+    if ($queryResult->fetch()) {
+      $result = [];
+      foreach ($this->providerNames as $providerName) {
+        $result[$providerName] = $queryResult->$providerName;
+      }
+    }
+    else {
+      foreach ($this->providerNames as $providerName) {
+        $result[$providerName] = 'ErrorQueryResultWasEmpty';
+      }
+    }
+
+    return $result;
+  }
+
+  public function getProviderNames() {
+    return $this->providerNames;
   }
 
   public function setCampaign($campaignId, $campaignChildren) {

@@ -15,24 +15,18 @@
 
 class CRM_Campaignaddon_Data_ContributionSum extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $name = 'ContributionSum';
+  protected $providerNames = ['ContributionSum'];
 
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
     $query = "
-      SELECT SUM(`total_amount`)
+      SELECT SUM(`total_amount`) AS ContributionSum
       FROM `civicrm_contribution`
       WHERE `campaign_id` IN ({$allIdsList});
     ";
 
-      $result = CRM_Core_DAO::singleValueQuery($query);
-
-      if ($result) {
-         return $result;
-      } else {
-         return '0';
-      }
+    return $this->getProviderResults($query);
   }
 
 }

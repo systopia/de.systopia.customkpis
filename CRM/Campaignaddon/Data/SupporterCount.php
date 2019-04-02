@@ -15,13 +15,14 @@
 
 class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $name = 'SupporterCount';
+  protected $providerNames = ['SupporterCount'];
 
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
+    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
     $query = "
-      SELECT COUNT(supporters.contact_id) FROM
+      SELECT COUNT(supporters.contact_id) AS SupporterCount FROM
       (
           SELECT DISTINCT contact.contact_id AS contact_id
           FROM `civicrm_activity` AS activity
@@ -35,15 +36,8 @@ class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseC
           WHERE `campaign_id` IN ({$allIdsList})
       ) AS supporters
     ";
-    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
 
-      $result = CRM_Core_DAO::singleValueQuery($query);
-
-      if ($result) {
-         return $result;
-      } else {
-         return '0';
-      }
+    return $this->getProviderResults($query);
   }
 
 }

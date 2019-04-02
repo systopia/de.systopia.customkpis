@@ -19,16 +19,17 @@ class CRM_Campaignaddon_DataHandler {
 
   function __construct() {
     $providerList = [
-      new CRM_Campaignaddon_Data_AddresseeCount(),
-      new CRM_Campaignaddon_Data_VersandCount(),
+      new CRM_Campaignaddon_Data_AddresseeAndVersandCount(),
       new CRM_Campaignaddon_Data_SupporterCount(),
       new CRM_Campaignaddon_Data_ContributionSum()
     ];
 
     //Fill provider list as map with provider name => provider instance:
     foreach ($providerList as $provider) {
-      if (!$this->hasProvider($provider->getName())) {
-        $this->dataProviders[$provider->getName()] = $provider;
+      foreach ($provider->getProviderNames() as $providerName) {
+        if (!$this->hasProvider($providerName)) {
+          $this->dataProviders[$providerName] = $provider;
+        }
       }
     }
   }
@@ -45,8 +46,8 @@ class CRM_Campaignaddon_DataHandler {
   }
 
   public function getData($providerName) {
-    if ($this->hasProvider($providerName)) {
-      return $this->dataProviders[$providerName]->getData();
+    if ($this->hasProvider($providerName) && ($providerName != CRM_Campaignaddon_Data_BaseClass::PROVIDER_NOT_SET)) {
+      return $this->dataProviders[$providerName]->getData()[$providerName];
       //TODO: Cache the result.
     }
     else {

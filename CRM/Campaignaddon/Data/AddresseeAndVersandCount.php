@@ -13,9 +13,9 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_AddresseeCount extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Campaignaddon_Data_AddresseeAndVersandCount extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $name = 'AddresseeCount';
+  protected $providerNames = ['VersandCount', 'AddresseeCount'];
 
   public function getData() {
     $settings = CRM_Campaignaddon_Configuration::getSettings();
@@ -23,8 +23,10 @@ class CRM_Campaignaddon_Data_AddresseeCount extends CRM_Campaignaddon_Data_BaseC
     $allIdsList = implode(',', $this->allCampaignIds);
     $versandActivityTypes = implode(',', $settings['versand_activity_types']);
 
+    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
     $query = "
-      SELECT COUNT(DISTINCT contact.contact_id)
+      SELECT COUNT(contact.contact_id) AS VersandCount,
+             COUNT(DISTINCT contact.contact_id) AS AddresseeCount
       FROM `civicrm_activity` AS activity
       LEFT JOIN `civicrm_activity_contact` AS contact
         ON activity.id = contact.activity_id
@@ -32,15 +34,8 @@ class CRM_Campaignaddon_Data_AddresseeCount extends CRM_Campaignaddon_Data_BaseC
       WHERE activity.campaign_id IN ({$allIdsList})
         AND activity.activity_type_id IN ({$versandActivityTypes})
     ";
-    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
 
-      $result = CRM_Core_DAO::singleValueQuery($query);
-
-      if ($result) {
-         return $result;
-      } else {
-         return '0';
-      }
+    return $this->getProviderResults($query);
   }
 
 }
