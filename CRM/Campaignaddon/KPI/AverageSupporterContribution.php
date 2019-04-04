@@ -21,7 +21,12 @@ class CRM_Campaignaddon_KPI_AverageSupporterContribution extends CRM_Campaignadd
     $contributionSum = $dataHandler->getData('ContributionSum');
     $supporterCount = $dataHandler->getData('SupporterCount');
 
-    $data = $contributionSum / $supporterCount;
+    if ($supporterCount) {
+      $data = $contributionSum / $supporterCount;
+    }
+    else {
+      $data = 0;
+    }
 
     $kpi = [
       "id"          => $this->name,
