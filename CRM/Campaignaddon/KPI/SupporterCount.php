@@ -25,7 +25,7 @@ class CRM_Campaignaddon_KPI_SupporterCount extends CRM_Campaignaddon_KPI_BaseCla
       "title"       => ts('Number of supporters', CRM_Campaignaddon_Configuration::DOMAIN),
       "kpi_type"    => "number",
       "vis_type"    => "none",
-      "description" => ts("Number of supporters (contacts who are targets of an activity or who contributed) associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
+      "description" => ts("Number of supporters (contacts who contributed) in this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
       "value"       => $data,
       "link"        => ""
     ];

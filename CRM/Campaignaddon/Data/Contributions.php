@@ -13,31 +13,21 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_SupporterCount extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Campaignaddon_Data_Contributions extends CRM_Campaignaddon_Data_BaseClass {
 
-  protected $providerNames = ['SupporterCount'];
+  protected $providerNames = ['ContributionSum', 'ContributionCount', 'SupporterCount'];
 
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
-    //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
     $query = "
-      SELECT COUNT(supporters.contact_id) AS SupporterCount FROM
-      (
-          SELECT DISTINCT contact.contact_id AS contact_id
-          FROM `civicrm_activity` AS activity
-          LEFT JOIN `civicrm_activity_contact` AS contact
-            ON activity.id = contact.activity_id
-              AND contact.record_type_id = 3
-          WHERE activity.campaign_id IN ({$allIdsList})
-        UNION DISTINCT
-          SELECT DISTINCT `contact_id`
-          FROM `civicrm_contribution`
-          WHERE `campaign_id` IN ({$allIdsList})
-      ) AS supporters
+      SELECT SUM(`total_amount`) AS ContributionSum,
+             COUNT(`id`) AS ContributionCount,
+             COUNT(DISTINCT `contact_id`) AS SupporterCount
+      FROM `civicrm_contribution`
+      WHERE `campaign_id` IN ({$allIdsList});
     ";
 
     return $this->getProviderResults($query);
   }
-
 }
