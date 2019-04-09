@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| SYSTOPIA OnlyOffice Integration                        |
+| SYSTOPIA Campaign Manager Addon                        |
 | Copyright (C) 2019 SYSTOPIA                            |
 | Author: B. Zschiedrich (zschiedrich@systopia.de)       |
 +--------------------------------------------------------+
@@ -50,6 +50,7 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
     $this->campaignId = $campaignId;
     $this->campaignChildren = $campaignChildren;
 
+    //Format of campaignChildren: "id":"name"
     $this->allCampaignIds = array_keys($campaignChildren);
     $this->allCampaignIds[] = $campaignId;
   }

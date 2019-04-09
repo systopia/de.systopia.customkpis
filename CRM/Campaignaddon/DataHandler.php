@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| SYSTOPIA OnlyOffice Integration                        |
+| SYSTOPIA Campaign Manager Addon                        |
 | Copyright (C) 2019 SYSTOPIA                            |
 | Author: B. Zschiedrich (zschiedrich@systopia.de)       |
 +--------------------------------------------------------+

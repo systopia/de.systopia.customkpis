@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| SYSTOPIA OnlyOffice Integration                        |
+| SYSTOPIA Campaign Manager Addon                        |
 | Copyright (C) 2019 SYSTOPIA                            |
 | Author: B. Zschiedrich (zschiedrich@systopia.de)       |
 +--------------------------------------------------------+
@@ -13,13 +13,6 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-use CRM_Campaignaddon_ExtensionUtil as E;
-
-/**
- * Form controller class
- *
- * @see https://wiki.civicrm.org/confluence/display/CRMDOC/QuickForm+Reference
- */
 class CRM_Campaignaddon_Configuration {
 
   const GROUP = 'de.volksverein.campaignaddon';
