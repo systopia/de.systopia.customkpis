@@ -22,7 +22,7 @@ class CRM_Campaignaddon_Configuration {
   public const DOMAIN = ['domain' => self::GROUP];
 
   /**
-   * @param $name string settigs name
+   * @param $name string settings name
    */
   public static function getSetting($name)
   {
@@ -39,7 +39,10 @@ class CRM_Campaignaddon_Configuration {
     if ($settings && is_array($settings)) {
       return $settings;
     } else {
-      return ['versand_activity_types' => [1,2,3,4,5,6,7,8,9]];
+      return [
+        'versand_activity_types' => [2,3,4,22],
+        'include_trash_contacts' => true
+      ];
     }
   }
 
@@ -50,6 +53,6 @@ class CRM_Campaignaddon_Configuration {
    */
   public static function setSettings($settings)
   {
-    //CRM_Core_BAO_Setting::setItem($settings, self::GROUP, self::SETTINGS);
+    CRM_Core_BAO_Setting::setItem($settings, self::GROUP, self::SETTINGS);
   }
 }
