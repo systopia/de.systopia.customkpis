@@ -53,11 +53,11 @@ class CRM_Campaignaddon_Form_Settings extends CRM_Core_Form {
       )
     );
 
-    //Config for including contacts in trash:
+    //Config for including deleted contacts:
     $this->add(
       'checkbox',
-      'include_trash_contacts',
-      E::ts('Include contacts in trash'),
+      'include_deleted_contacts',
+      E::ts('Include deleted contacts'),
       NULL,
       TRUE
     );

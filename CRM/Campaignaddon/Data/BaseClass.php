@@ -23,6 +23,12 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
   protected $campaignChildren;
   protected $allCampaignIds;
 
+  protected $trashLookup = [
+    'join' => '',
+    'where' => '',
+    'where_and' => ''
+  ];
+
   abstract public function getData();
 
   protected function getProviderResults($query) {
@@ -40,6 +46,22 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
     }
 
     return $result;
+  }
+
+  /**
+   * Create the strings for trash lookup (deleted contacts) regarding the configuration.
+   */
+  protected function createTrashLookup($contact_id_variable_name) {
+    $settings = CRM_Campaignaddon_Configuration::getSettings();
+
+    if ($settings['include_deleted_contacts']) {
+      $where_core = ' (trash_lookup.is_deleted = 0 OR trash_lookup.is_deleted IS NULL) ';
+      $this->trashLookup = [
+        'join' => " LEFT JOIN civicrm_contact AS trash_lookup ON {$contact_id_variable_name} = trash_lookup.id ",
+        'where' => ' WHERE' . $where_core,
+        'where_and' => ' AND ' . $where_core
+      ];
+    }
   }
 
   public function getProviderNames() {

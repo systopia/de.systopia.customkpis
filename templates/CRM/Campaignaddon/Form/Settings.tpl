@@ -20,8 +20,8 @@
 </div>
 
 <div class="crm-section">
-  <div class="label">{$form.include_trash_contacts.label}</div>
-  <div class="content">{$form.include_trash_contacts.html}</div>
+  <div class="label">{$form.include_deleted_contacts.label}</div>
+  <div class="content">{$form.include_deleted_contacts.html}</div>
   <div class="clear"></div>
 </div>
 

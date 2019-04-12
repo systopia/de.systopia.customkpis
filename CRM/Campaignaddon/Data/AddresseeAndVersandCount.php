@@ -23,16 +23,25 @@ class CRM_Campaignaddon_Data_AddresseeAndVersandCount extends CRM_Campaignaddon_
     $allIdsList = implode(',', $this->allCampaignIds);
     $versandActivityTypes = implode(',', $settings['versand_activity_types']);
 
+    $this->createTrashLookup('contact.contact_id');
+
     //"civicrm_activity_contact.record_type_id = 3" means the contact is a target of the activity.
     $query = "
-      SELECT COUNT(contact.contact_id) AS VersandCount,
-             COUNT(DISTINCT contact.contact_id) AS AddresseeCount
-      FROM `civicrm_activity` AS activity
-      LEFT JOIN `civicrm_activity_contact` AS contact
-        ON activity.id = contact.activity_id
-          AND contact.record_type_id = 3
-      WHERE activity.campaign_id IN ({$allIdsList})
+      SELECT
+        COUNT(contact.contact_id) AS VersandCount,
+        COUNT(DISTINCT contact.contact_id) AS AddresseeCount
+      FROM
+        civicrm_activity AS activity
+      LEFT JOIN
+        civicrm_activity_contact AS contact
+          ON activity.id = contact.activity_id
+            AND contact.record_type_id = 3
+      " . $this->trashLookup['join'] . "
+      WHERE
+        activity.campaign_id IN ({$allIdsList})
         AND activity.activity_type_id IN ({$versandActivityTypes})
+        " . $this->trashLookup['where_and'] . "
+      ;
     ";
 
     return $this->getProviderResults($query);

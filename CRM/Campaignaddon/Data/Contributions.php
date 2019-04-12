@@ -20,12 +20,20 @@ class CRM_Campaignaddon_Data_Contributions extends CRM_Campaignaddon_Data_BaseCl
   public function getData() {
     $allIdsList = implode(',', $this->allCampaignIds);
 
+    $this->createTrashLookup('c.contact_id');
+
     $query = "
-      SELECT SUM(`total_amount`) AS ContributionSum,
-             COUNT(`id`) AS ContributionCount,
-             COUNT(DISTINCT `contact_id`) AS SupporterCount
-      FROM `civicrm_contribution`
-      WHERE `campaign_id` IN ({$allIdsList});
+      SELECT
+        SUM(c.total_amount) AS ContributionSum,
+        COUNT(c.id) AS ContributionCount,
+        COUNT(DISTINCT c.contact_id) AS SupporterCount
+      FROM
+        civicrm_contribution AS c
+      " . $this->trashLookup['join'] . "
+      WHERE
+        c.campaign_id IN ({$allIdsList})
+        " . $this->trashLookup['where_and'] . "
+      ;
     ";
 
     return $this->getProviderResults($query);
