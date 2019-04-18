@@ -42,6 +42,7 @@ class CRM_Campaignaddon_Configuration {
       return [
         'versand_activity_types' => [2,3,4,19,22,34],
         'include_deleted_contacts' => true
+        // TODO: Add configuration for KPIs so one can enable or disable them.
       ];
     }
   }
