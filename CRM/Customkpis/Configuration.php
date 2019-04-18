@@ -15,11 +15,12 @@
 
 class CRM_Customkpis_Configuration {
 
-  const GROUP = 'de.volksverein.customkpis';
+  const GROUP = 'de.systopia.customkpis';
   const PREFIX = 'customkpis';
   const SETTINGS = self::PREFIX . '_settings';
 
   public const DOMAIN = ['domain' => self::GROUP];
+  // TODO: Change these constants with the ones in CRM_Customkpis_ExtensionUtil (customkpis.civix.php).
 
   /**
    * @param $name string settings name
