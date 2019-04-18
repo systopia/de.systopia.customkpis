@@ -59,7 +59,7 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
       $this->trashLookup = [
         'join' => " LEFT JOIN civicrm_contact AS trash_lookup ON {$contact_id_variable_name} = trash_lookup.id ",
         'where' => ' WHERE' . $where_core,
-        'where_and' => ' AND ' . $where_core
+        'where_and' => ' AND' . $where_core
       ];
     }
   }
