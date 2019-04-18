@@ -13,14 +13,14 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-use CRM_Campaignaddon_ExtensionUtil as E;
+use CRM_Customkpis_ExtensionUtil as E;
 
 /**
  * Form controller class
  *
  * @see https://wiki.civicrm.org/confluence/display/CRMDOC/QuickForm+Reference
  */
-class CRM_Campaignaddon_Form_Settings extends CRM_Core_Form {
+class CRM_Customkpis_Form_Settings extends CRM_Core_Form {
 
   public function buildQuickForm() {
 
@@ -62,7 +62,7 @@ class CRM_Campaignaddon_Form_Settings extends CRM_Core_Form {
       TRUE
     );
 
-    $settings = CRM_Campaignaddon_Configuration::getSettings();
+    $settings = CRM_Customkpis_Configuration::getSettings();
     $this->setDefaults($settings);
 
     $this->addButtons(array(
@@ -78,7 +78,7 @@ class CRM_Campaignaddon_Form_Settings extends CRM_Core_Form {
 
   public function postProcess() {
     $values = $this->exportValues();
-    CRM_Campaignaddon_Configuration::setSettings($values);
+    CRM_Customkpis_Configuration::setSettings($values);
     parent::postProcess();
   }
 

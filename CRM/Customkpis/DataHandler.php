@@ -13,15 +13,15 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_DataHandler {
+class CRM_Customkpis_DataHandler {
 
   private $dataProviders = [];
   private $dataCache = [];
 
   function __construct() {
     $providerList = [
-      new CRM_Campaignaddon_Data_AddresseeAndVersandCount(),
-      new CRM_Campaignaddon_Data_Contributions(),
+      new CRM_Customkpis_Data_AddresseeAndVersandCount(),
+      new CRM_Customkpis_Data_Contributions(),
     ];
 
     //Fill provider list as map with provider name => provider instance:
@@ -48,7 +48,7 @@ class CRM_Campaignaddon_DataHandler {
   }
 
   public function getData($providerName) {
-    if ($this->hasProvider($providerName) && ($providerName != CRM_Campaignaddon_Data_BaseClass::PROVIDER_NOT_SET)) {
+    if ($this->hasProvider($providerName) && ($providerName != CRM_Customkpis_Data_BaseClass::PROVIDER_NOT_SET)) {
       //If value is cached, return the cached value:
       if (isset($this->dataCache[$providerName])) {
         return $this->dataCache[$providerName];

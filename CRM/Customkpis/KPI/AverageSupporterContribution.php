@@ -13,29 +13,29 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_Response extends CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Customkpis_KPI_AverageSupporterContribution extends CRM_Customkpis_KPI_BaseClass {
 
-  protected $name = 'Response';
+  protected $name = 'AverageSupporterContribution';
 
   public function calculateKpi($dataHandler) {
-    $versandCount = $dataHandler->getData('VersandCount');
-    $contributionCount = $dataHandler->getData('ContributionCount');
+    $contributionSum = $dataHandler->getData('ContributionSum');
+    $supporterCount = $dataHandler->getData('SupporterCount');
 
-    if ($versandCount) {
-      $response = $contributionCount / $versandCount;
+    if ($supporterCount) {
+      $data = $contributionSum / $supporterCount;
     }
     else {
-      $response = 0;
+      $data = 0;
     }
 
     $kpi = [
-      'id'          => $this->name,
-      'title'       => ts('Response', CRM_Campaignaddon_Configuration::DOMAIN),
-      'kpi_type'    => 'percentage',
-      'vis_type'    => 'none',
-      'description' => ts('Response (contributions per versand acitivites in percent) for this campaign.', CRM_Campaignaddon_Configuration::DOMAIN),
-      'value'       => $response,
-      'link'        => ''
+      "id"          => $this->name,
+      "title"       => ts('Average contribution per supporter', CRM_Customkpis_Configuration::DOMAIN),
+      "kpi_type"    => "money",
+      "vis_type"    => "none",
+      "description" => ts("Average donation amount per supporter for this campaign", CRM_Customkpis_Configuration::DOMAIN),
+      "value"       => $data,
+      "link"        => ""
     ];
 
     return $kpi;

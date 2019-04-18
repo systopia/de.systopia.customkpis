@@ -15,18 +15,18 @@
 
 require_once('CRM/CampaignTree/Tree.php');
 
-class CRM_Campaignaddon_KpiHandler {
+class CRM_Customkpis_KpiHandler {
 
   private $kpiProviders;
   private $dataHandler;
 
   function __construct() {
     $this->kpiProviders = [
-      //new CRM_Campaignaddon_KPI_AddresseeCount(),
-      //new CRM_Campaignaddon_KPI_VersandCount(),
-      new CRM_Campaignaddon_KPI_SupporterCount(),
-      new CRM_Campaignaddon_KPI_AverageSupporterContribution(),
-      new CRM_Campaignaddon_KPI_Response,
+      //new CRM_Customkpis_KPI_AddresseeCount(),
+      //new CRM_Customkpis_KPI_VersandCount(),
+      new CRM_Customkpis_KPI_SupporterCount(),
+      new CRM_Customkpis_KPI_AverageSupporterContribution(),
+      new CRM_Customkpis_KPI_Response,
     ];
   }
 

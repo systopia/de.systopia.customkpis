@@ -13,7 +13,7 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-abstract class CRM_Campaignaddon_Data_BaseClass {
+abstract class CRM_Customkpis_Data_BaseClass {
 
   public const PROVIDER_NOT_SET = 'NoProviderSet';
 
@@ -52,7 +52,7 @@ abstract class CRM_Campaignaddon_Data_BaseClass {
    * Create the strings for trash lookup (deleted contacts) regarding the configuration.
    */
   protected function createTrashLookup($contact_id_variable_name) {
-    $settings = CRM_Campaignaddon_Configuration::getSettings();
+    $settings = CRM_Customkpis_Configuration::getSettings();
 
     if ($settings['include_deleted_contacts']) {
       $where_core = ' (trash_lookup.is_deleted = 0 OR trash_lookup.is_deleted IS NULL) ';

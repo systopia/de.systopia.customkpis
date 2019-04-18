@@ -13,23 +13,14 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_SupporterCount extends CRM_Campaignaddon_KPI_BaseClass {
+abstract class CRM_Customkpis_KPI_BaseClass {
 
-  protected $name = 'SupporterCount';
+  protected $name = 'BaseClass';
 
-  public function calculateKpi($dataHandler) {
-    $data = $dataHandler->getData('SupporterCount');
-
-    $kpi = [
-      "id"          => $this->name,
-      "title"       => ts('Number of supporters', CRM_Campaignaddon_Configuration::DOMAIN),
-      "kpi_type"    => "number",
-      "vis_type"    => "none",
-      "description" => ts("Number of supporters (contacts who contributed) in this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
-      "value"       => $data,
-      "link"        => ""
-    ];
-
-    return $kpi;
+  public function getName() {
+    return $this->name;
   }
+
+  abstract public function calculateKpi($dataHandler);
+
 }

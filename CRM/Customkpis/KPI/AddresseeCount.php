@@ -13,19 +13,19 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_VersandCount extends CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Customkpis_KPI_AddresseeCount extends CRM_Customkpis_KPI_BaseClass {
 
-  protected $name = 'VersandCount';
+  protected $name = 'AddresseeCount';
 
   public function calculateKpi($dataHandler) {
-    $data = $dataHandler->getData('VersandCount');
+    $data = $dataHandler->getData('AddresseeCount');
 
     $kpi = [
       "id"          => $this->name,
-      "title"       => ts('Auflage', CRM_Campaignaddon_Configuration::DOMAIN),
+      "title"       => ts('Number of addressees', CRM_Customkpis_Configuration::DOMAIN),
       "kpi_type"    => "number",
       "vis_type"    => "none",
-      "description" => ts("Auflage (number of activities with types defined in versand activity list) associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
+      "description" => ts("Number of addressees (contacts who are targets of an activity defined in versand activity list) associated with this campaign", CRM_Customkpis_Configuration::DOMAIN),
       "value"       => $data,
       "link"        => ""
     ];

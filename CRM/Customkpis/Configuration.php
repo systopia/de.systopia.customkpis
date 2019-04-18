@@ -13,10 +13,10 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Configuration {
+class CRM_Customkpis_Configuration {
 
-  const GROUP = 'de.volksverein.campaignaddon';
-  const PREFIX = 'campaignaddon';
+  const GROUP = 'de.volksverein.customkpis';
+  const PREFIX = 'customkpis';
   const SETTINGS = self::PREFIX . '_settings';
 
   public const DOMAIN = ['domain' => self::GROUP];

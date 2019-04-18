@@ -13,23 +13,29 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_KPI_AddresseeCount extends CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Customkpis_Data_Contributions extends CRM_Customkpis_Data_BaseClass {
 
-  protected $name = 'AddresseeCount';
+  protected $providerNames = ['ContributionSum', 'ContributionCount', 'SupporterCount'];
 
-  public function calculateKpi($dataHandler) {
-    $data = $dataHandler->getData('AddresseeCount');
+  public function getData() {
+    $allIdsList = implode(',', $this->allCampaignIds);
 
-    $kpi = [
-      "id"          => $this->name,
-      "title"       => ts('Number of addressees', CRM_Campaignaddon_Configuration::DOMAIN),
-      "kpi_type"    => "number",
-      "vis_type"    => "none",
-      "description" => ts("Number of addressees (contacts who are targets of an activity defined in versand activity list) associated with this campaign", CRM_Campaignaddon_Configuration::DOMAIN),
-      "value"       => $data,
-      "link"        => ""
-    ];
+    $this->createTrashLookup('c.contact_id');
 
-    return $kpi;
+    $query = "
+      SELECT
+        SUM(c.total_amount) AS ContributionSum,
+        COUNT(c.id) AS ContributionCount,
+        COUNT(DISTINCT c.contact_id) AS SupporterCount
+      FROM
+        civicrm_contribution AS c
+      " . $this->trashLookup['join'] . "
+      WHERE
+        c.campaign_id IN ({$allIdsList})
+        " . $this->trashLookup['where_and'] . "
+      ;
+    ";
+
+    return $this->getProviderResults($query);
   }
 }

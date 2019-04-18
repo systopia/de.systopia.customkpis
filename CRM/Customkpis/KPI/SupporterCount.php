@@ -13,29 +13,23 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_Contributions extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Customkpis_KPI_SupporterCount extends CRM_Customkpis_KPI_BaseClass {
 
-  protected $providerNames = ['ContributionSum', 'ContributionCount', 'SupporterCount'];
+  protected $name = 'SupporterCount';
 
-  public function getData() {
-    $allIdsList = implode(',', $this->allCampaignIds);
+  public function calculateKpi($dataHandler) {
+    $data = $dataHandler->getData('SupporterCount');
 
-    $this->createTrashLookup('c.contact_id');
+    $kpi = [
+      "id"          => $this->name,
+      "title"       => ts('Number of supporters', CRM_Customkpis_Configuration::DOMAIN),
+      "kpi_type"    => "number",
+      "vis_type"    => "none",
+      "description" => ts("Number of supporters (contacts who contributed) in this campaign", CRM_Customkpis_Configuration::DOMAIN),
+      "value"       => $data,
+      "link"        => ""
+    ];
 
-    $query = "
-      SELECT
-        SUM(c.total_amount) AS ContributionSum,
-        COUNT(c.id) AS ContributionCount,
-        COUNT(DISTINCT c.contact_id) AS SupporterCount
-      FROM
-        civicrm_contribution AS c
-      " . $this->trashLookup['join'] . "
-      WHERE
-        c.campaign_id IN ({$allIdsList})
-        " . $this->trashLookup['where_and'] . "
-      ;
-    ";
-
-    return $this->getProviderResults($query);
+    return $kpi;
   }
 }

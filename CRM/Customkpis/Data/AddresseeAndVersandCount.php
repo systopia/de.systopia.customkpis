@@ -13,12 +13,12 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-class CRM_Campaignaddon_Data_AddresseeAndVersandCount extends CRM_Campaignaddon_Data_BaseClass {
+class CRM_Customkpis_Data_AddresseeAndVersandCount extends CRM_Customkpis_Data_BaseClass {
 
   protected $providerNames = ['VersandCount', 'AddresseeCount'];
 
   public function getData() {
-    $settings = CRM_Campaignaddon_Configuration::getSettings();
+    $settings = CRM_Customkpis_Configuration::getSettings();
 
     $allIdsList = implode(',', $this->allCampaignIds);
     $versandActivityTypes = implode(',', $settings['versand_activity_types']);

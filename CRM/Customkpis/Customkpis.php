@@ -13,12 +13,12 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-use CRM_Campaignaddon_ExtensionUtil as E;
+use CRM_Customkpis_ExtensionUtil as E;
 
 /**
  * General handling class
  */
-class CRM_Campaignaddon_CampaignAddon {
+class CRM_Customkpis_Customkpis {
 
   private static $singleton = NULL;
 
@@ -27,24 +27,24 @@ class CRM_Campaignaddon_CampaignAddon {
   private $kpiHandler;
 
   /**
-  * Get the CampaignAddon controller singleton
+  * Get the Customkpis controller singleton
   */
   public static function getSingleton() {
     if (self::$singleton === NULL) {
-      self::$singleton = new CRM_Campaignaddon_CampaignAddon();
+      self::$singleton = new CRM_Customkpis_Customkpis();
     }
     return self::$singleton;
   }
 
   /**
-   * CRM_Campaignaddon_CampaignAddon constructor.
+   * CRM_Customkpis_Customkpis constructor.
    */
   function __construct() {
-    $this->settings = CRM_Campaignaddon_Configuration::getSettings();
+    $this->settings = CRM_Customkpis_Configuration::getSettings();
 
-    $this->dataHandler = new CRM_Campaignaddon_DataHandler();
+    $this->dataHandler = new CRM_Customkpis_DataHandler();
 
-    $this->kpiHandler = new CRM_Campaignaddon_KpiHandler();
+    $this->kpiHandler = new CRM_Customkpis_KpiHandler();
     $this->kpiHandler->setDataHandler($this->dataHandler);
   }
 

@@ -13,14 +13,23 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-abstract class CRM_Campaignaddon_KPI_BaseClass {
+class CRM_Customkpis_KPI_VersandCount extends CRM_Customkpis_KPI_BaseClass {
 
-  protected $name = 'BaseClass';
+  protected $name = 'VersandCount';
 
-  public function getName() {
-    return $this->name;
+  public function calculateKpi($dataHandler) {
+    $data = $dataHandler->getData('VersandCount');
+
+    $kpi = [
+      "id"          => $this->name,
+      "title"       => ts('Auflage', CRM_Customkpis_Configuration::DOMAIN),
+      "kpi_type"    => "number",
+      "vis_type"    => "none",
+      "description" => ts("Auflage (number of activities with types defined in versand activity list) associated with this campaign", CRM_Customkpis_Configuration::DOMAIN),
+      "value"       => $data,
+      "link"        => ""
+    ];
+
+    return $kpi;
   }
-
-  abstract public function calculateKpi($dataHandler);
-
 }

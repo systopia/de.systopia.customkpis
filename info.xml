@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<extension key="de.volksverein.campaignaddon" type="module">
-  <file>campaignaddon</file>
-  <name>Campaign Addon</name>
+<extension key="de.systopia.customkpis" type="module">
+  <file>customkpis</file>
+  <name>Custom KPIs</name>
   <description>Extends the Campaign extension by Systopia with some new KPIs.</description>
   <license>AGPL-3.0</license>
   <maintainer>
@@ -25,6 +25,6 @@
   </requires>
   <comments>This is a new, undeveloped module</comments>
   <civix>
-    <namespace>CRM/Campaignaddon</namespace>
+    <namespace>CRM/Customkpis</namespace>
   </civix>
 </extension>

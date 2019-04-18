@@ -1,4 +1,4 @@
-# de.volksverein.campaignaddon
+# de.systopia.customkpis
 
 (*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
 
@@ -20,7 +20,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl de.volksverein.campaignaddon@https://github.com/FIXME/de.volksverein.campaignaddon/archive/master.zip
+cv dl de.systopia.customkpis@https://github.com/systopia/de.systopia.customkpis/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -29,8 +29,8 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/de.volksverein.campaignaddon.git
-cv en campaignaddon
+git clone https://github.com/systopia/de.systopia.customkpis.git
+cv en customkpis
 ```
 
 ## Usage

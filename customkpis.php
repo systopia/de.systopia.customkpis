@@ -1,7 +1,7 @@
 <?php
 
-require_once 'campaignaddon.civix.php';
-use CRM_Campaignaddon_ExtensionUtil as E;
+require_once 'customkpis.civix.php';
+use CRM_Customkpis_ExtensionUtil as E;
 
 
 /**
@@ -10,8 +10,8 @@ use CRM_Campaignaddon_ExtensionUtil as E;
  * @param $kpiList
  * @param $level
  */
-function campaignaddon_civicrm_campaignKpis($campaignId, &$kpiList, $level) {
-  CRM_Campaignaddon_CampaignAddon::getSingleton()->startKpis($campaignId, $kpiList, $level);
+function customkpis_civicrm_campaignKpis($campaignId, &$kpiList, $level) {
+  CRM_Customkpis_Customkpis::getSingleton()->startKpis($campaignId, $kpiList, $level);
 }
 
 
@@ -20,8 +20,8 @@ function campaignaddon_civicrm_campaignKpis($campaignId, &$kpiList, $level) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function campaignaddon_civicrm_config(&$config) {
-  _campaignaddon_civix_civicrm_config($config);
+function customkpis_civicrm_config(&$config) {
+  _customkpis_civix_civicrm_config($config);
 }
 
 /**
@@ -29,8 +29,8 @@ function campaignaddon_civicrm_config(&$config) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
-function campaignaddon_civicrm_xmlMenu(&$files) {
-  _campaignaddon_civix_civicrm_xmlMenu($files);
+function customkpis_civicrm_xmlMenu(&$files) {
+  _customkpis_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -38,8 +38,8 @@ function campaignaddon_civicrm_xmlMenu(&$files) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
-function campaignaddon_civicrm_install() {
-  _campaignaddon_civix_civicrm_install();
+function customkpis_civicrm_install() {
+  _customkpis_civix_civicrm_install();
 }
 
 /**
@@ -47,8 +47,8 @@ function campaignaddon_civicrm_install() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
  */
-function campaignaddon_civicrm_postInstall() {
-  _campaignaddon_civix_civicrm_postInstall();
+function customkpis_civicrm_postInstall() {
+  _customkpis_civix_civicrm_postInstall();
 }
 
 /**
@@ -56,8 +56,8 @@ function campaignaddon_civicrm_postInstall() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
-function campaignaddon_civicrm_uninstall() {
-  _campaignaddon_civix_civicrm_uninstall();
+function customkpis_civicrm_uninstall() {
+  _customkpis_civix_civicrm_uninstall();
 }
 
 /**
@@ -65,8 +65,8 @@ function campaignaddon_civicrm_uninstall() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
-function campaignaddon_civicrm_enable() {
-  _campaignaddon_civix_civicrm_enable();
+function customkpis_civicrm_enable() {
+  _customkpis_civix_civicrm_enable();
 }
 
 /**
@@ -74,8 +74,8 @@ function campaignaddon_civicrm_enable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
-function campaignaddon_civicrm_disable() {
-  _campaignaddon_civix_civicrm_disable();
+function customkpis_civicrm_disable() {
+  _customkpis_civix_civicrm_disable();
 }
 
 /**
@@ -83,8 +83,8 @@ function campaignaddon_civicrm_disable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
-function campaignaddon_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _campaignaddon_civix_civicrm_upgrade($op, $queue);
+function customkpis_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  return _customkpis_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -95,8 +95,8 @@ function campaignaddon_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
-function campaignaddon_civicrm_managed(&$entities) {
-  _campaignaddon_civix_civicrm_managed($entities);
+function customkpis_civicrm_managed(&$entities) {
+  _customkpis_civix_civicrm_managed($entities);
 }
 
 /**
@@ -108,8 +108,8 @@ function campaignaddon_civicrm_managed(&$entities) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function campaignaddon_civicrm_caseTypes(&$caseTypes) {
-  _campaignaddon_civix_civicrm_caseTypes($caseTypes);
+function customkpis_civicrm_caseTypes(&$caseTypes) {
+  _customkpis_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -122,8 +122,8 @@ function campaignaddon_civicrm_caseTypes(&$caseTypes) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_angularModules
  */
-function campaignaddon_civicrm_angularModules(&$angularModules) {
-  _campaignaddon_civix_civicrm_angularModules($angularModules);
+function customkpis_civicrm_angularModules(&$angularModules) {
+  _customkpis_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -131,8 +131,8 @@ function campaignaddon_civicrm_angularModules(&$angularModules) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
-function campaignaddon_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _campaignaddon_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function customkpis_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+  _customkpis_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -142,8 +142,8 @@ function campaignaddon_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_entityTypes
  */
-function campaignaddon_civicrm_entityTypes(&$entityTypes) {
-  _campaignaddon_civix_civicrm_entityTypes($entityTypes);
+function customkpis_civicrm_entityTypes(&$entityTypes) {
+  _customkpis_civix_civicrm_entityTypes($entityTypes);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
@@ -153,7 +153,7 @@ function campaignaddon_civicrm_entityTypes(&$entityTypes) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
  *
-function campaignaddon_civicrm_preProcess($formName, &$form) {
+function customkpis_civicrm_preProcess($formName, &$form) {
 
 } // */
 
@@ -162,8 +162,8 @@ function campaignaddon_civicrm_preProcess($formName, &$form) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  *
-function campaignaddon_civicrm_navigationMenu(&$menu) {
-  _campaignaddon_civix_insert_navigation_menu($menu, 'Mailings', array(
+function customkpis_civicrm_navigationMenu(&$menu) {
+  _customkpis_civix_insert_navigation_menu($menu, 'Mailings', array(
     'label' => E::ts('New subliminal message'),
     'name' => 'mailing_subliminal_message',
     'url' => 'civicrm/mailing/subliminal',
@@ -171,5 +171,5 @@ function campaignaddon_civicrm_navigationMenu(&$menu) {
     'operator' => 'OR',
     'separator' => 0,
   ));
-  _campaignaddon_civix_navigationMenu($menu);
+  _customkpis_civix_navigationMenu($menu);
 } // */
