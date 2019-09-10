@@ -58,8 +58,7 @@ class CRM_Customkpis_Form_Settings extends CRM_Core_Form {
       'checkbox',
       'include_deleted_contacts',
       E::ts('Include deleted contacts'),
-      NULL,
-      TRUE
+      NULL
     );
 
     $settings = CRM_Customkpis_Configuration::getSettings();
