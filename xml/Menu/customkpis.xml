@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <menu>
   <item>
-    <path>civicrm/admin/customkpis</path>
+    <path>civicrm/customkpis/settings</path>
     <page_callback>CRM_Customkpis_Form_Settings</page_callback>
     <title>Campaign Addon Configuration</title>
-    <access_arguments>administer CiviCRM</access_arguments>
+    <access_arguments>administer CiviCampaign</access_arguments>
     <adminGroup>CiviCampaign</adminGroup>
-    <icon>admin/small/rela_type.png</icon>
+    <component>CiviCampaign</component>
+    <icon>admin/small/05.png</icon>
   </item>
 </menu>
