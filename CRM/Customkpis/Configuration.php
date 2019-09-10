@@ -22,6 +22,15 @@ class CRM_Customkpis_Configuration {
   public const DOMAIN = ['domain' => self::GROUP];
   // TODO: Change these constants with the ones in CRM_Customkpis_ExtensionUtil (customkpis.civix.php).
 
+  public static function getDefaultConfiguration()
+  {
+    return [
+      'versand_activity_types' => [2,3,4,19,22,34],
+      'include_deleted_contacts' => true,
+      // TODO: Add configuration for KPIs so one can enable or disable them.
+    ];
+  }
+
   /**
    * @param $name string settings name
    */
@@ -40,11 +49,7 @@ class CRM_Customkpis_Configuration {
     if ($settings && is_array($settings)) {
       return $settings;
     } else {
-      return [
-        'versand_activity_types' => [2,3,4,19,22,34],
-        'include_deleted_contacts' => true
-        // TODO: Add configuration for KPIs so one can enable or disable them.
-      ];
+      return self::getDefaultConfiguration();
     }
   }
 

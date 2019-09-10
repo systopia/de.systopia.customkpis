@@ -63,6 +63,14 @@ class CRM_Customkpis_Form_Settings extends CRM_Core_Form {
     );
 
     $settings = CRM_Customkpis_Configuration::getSettings();
+    // We only want the settings set as defaults that are identifiers:
+    $settings = array_filter($settings, function($key)
+      {
+        return in_array($key, ['versand_activity_types', 'include_deleted_contacts']);
+      },
+      ARRAY_FILTER_USE_KEY
+    );
+
     $this->setDefaults($settings);
 
     $this->addButtons(array(
@@ -77,8 +85,15 @@ class CRM_Customkpis_Form_Settings extends CRM_Core_Form {
   }
 
   public function postProcess() {
-    $values = $this->exportValues();
-    CRM_Customkpis_Configuration::setSettings($values);
+    $values = $this->exportValues(array_keys(CRM_Customkpis_Configuration::getDefaultConfiguration()), false);
+
+    $settings = CRM_Customkpis_Configuration::getSettings();
+    foreach($values as $key => $value)
+    {
+      $settings[$key] = $value;
+    }
+
+    CRM_Customkpis_Configuration::setSettings($settings);
     parent::postProcess();
   }
 
