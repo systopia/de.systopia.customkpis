@@ -5,8 +5,8 @@
   <description>Extends the Campaign extension by Systopia with some new KPIs.</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>B. Zschiedrich</author>
-    <email>zschiedrich@systopia.de</email>
+    <author>SYSTOPIA</author>
+    <email>info@systopia.de</email>
   </maintainer>
   <urls>
     <url desc="Main Extension Page">https://github.com/systopia/de.systopia.customkpis</url>
