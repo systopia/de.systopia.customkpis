@@ -13,7 +13,7 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-require_once('CRM/CampaignTree/Tree.php');
+require_once('CRM/CampaignManager/CampaignTree/Tree.php');
 
 class CRM_Customkpis_KpiHandler {
 
@@ -36,7 +36,7 @@ class CRM_Customkpis_KpiHandler {
 
   public function calculateKpis($campaignId, &$kpiList, $level) {
     //Get all sub-campaigns:
-    $campaigns = CRM_Campaign_Tree::getCampaignIds($campaignId, $level);
+    $campaigns = CRM_CampaignManager_CampaignTree_Tree::getCampaignIds($campaignId, $level);
     $children = $campaigns['children'];
 
     $this->dataHandler->setCampaign($campaignId, $children);
